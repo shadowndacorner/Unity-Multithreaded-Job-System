@@ -3,3 +3,7 @@ This is a very basic multithreaded job system for Unity with a simple task sched
 For example usage as a means for natively multithreading a component's Update, look at Sample/TestThread.cs, it's pretty well commented.
 
 I made this as a quick exercise to see how much effort would be involved in such a system.  I might keep working on it, I might not.
+
+Architecturally, this uses a lockful (if that's a term?) work-stealing job system with n-1 workers (where n is processor count).  While jobs are running, the main thread tries to steal background work itself if it doesn't have anything queued to run.
+
+In the future, I'd like to implement more of the ideas from Naughty Dog's GDC 2015 talk, such as waiting via atomic counters and scheduling jobs from within jobs.  But I'd say this is certainly a nice start.  It would also be very nice to ensure that each thread is locked to a processor core, but .NET doesn't provide any facilities with which to do this, so it would require native code.  Which wouldn't be complicated to implement, however it would lose its ability to easily be deployed cross platform, as each platform and processor architecture would require a precompiled shared library.
