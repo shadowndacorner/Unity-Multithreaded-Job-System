@@ -1,0 +1,5 @@
+This is a very basic multithreaded job system for Unity with a simple task scheduler, where each worker thread has its own local queue to try to avoid contention.
+
+For example usage as a means for natively multithreading a component's Update, look at Sample/TestThread.cs, it's pretty well commented.
+
+I made this as a quick exercise to see how much effort would be involved in such a system.  I might keep working on it, I might not.

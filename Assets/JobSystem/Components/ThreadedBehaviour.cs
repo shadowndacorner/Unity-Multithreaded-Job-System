@@ -19,6 +19,8 @@ public class ThreadedBehaviour : MonoBehaviour {
 
     void OnEnable()
     {
+        ShouldThreadedUpdate = true;
+        ShouldThreadedFixedUpdate = true;
         JobSystem.JobSystemCore.RegisterComponent(this);
     }
 
