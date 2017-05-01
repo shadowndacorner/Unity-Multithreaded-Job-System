@@ -326,7 +326,6 @@ public static class JobUtility
 
     public static void InitializeWorkers()
     {
-        Debug.Log("Worker threads initializing...");
         running = true;
         m_Workers = new List<Thread>();
         for (int i = 0; i < System.Environment.ProcessorCount - 1; ++i)
@@ -341,7 +340,6 @@ public static class JobUtility
 
     public static void Shutdown()
     {
-        Debug.Log("Shutting down threads");
         for (int i = 0; i < m_Workers.Count; ++i)
         {
             work_cvar.Set();
@@ -351,7 +349,6 @@ public static class JobUtility
         {
             if (!m_Workers[i].Join(1000))
                 m_Workers[i].Abort();
-            Debug.Log("Killed thread " + i);
         }
     }
 
